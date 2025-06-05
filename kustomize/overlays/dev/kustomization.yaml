@@ -1,10 +1,12 @@
 resources:
-  - ../../base
+- ../../base
 
 images:
-  - name: gitauwairimu/messageboard
-    newName: gitauwairimu/messageboard
-    newTag: PLACEHOLDER_SHA
+- name: gitauwairimu/messageboard
+  newName: gitauwairimu/messageboard
+  newTag: af1cead6d8244b3c38cc9511963fb712ea824b03
 
 patchesStrategicMerge:
-  - patch-deployment.yaml
+- patch-deployment.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
