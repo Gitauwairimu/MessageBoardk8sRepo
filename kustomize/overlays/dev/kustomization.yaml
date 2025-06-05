@@ -1,0 +1,10 @@
+resources:
+  - ../../base
+
+images:
+  - name: gitauwairimu/messageboard
+    newName: gitauwairimu/messageboard
+    newTag: PLACEHOLDER_SHA
+
+patchesStrategicMerge:
+  - patch-deployment.yaml
