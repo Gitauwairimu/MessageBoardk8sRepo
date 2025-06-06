@@ -7,4 +7,4 @@ spec:
   template:
     metadata:
       labels:
-        app: prod-app  # <== Matches the service selector
+        app: my-app  # <== Matches the service selector
