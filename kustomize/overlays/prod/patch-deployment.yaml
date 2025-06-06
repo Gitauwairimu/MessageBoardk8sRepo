@@ -1,6 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app
+  name: my-app  # Must match base deployment name
 spec:
   replicas: 2
+  template:
+    metadata:
+      labels:
+        app: prod-app  # <== Matches the service selector
