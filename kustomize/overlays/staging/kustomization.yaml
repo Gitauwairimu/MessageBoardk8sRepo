@@ -1,11 +1,11 @@
-namespace: messageboard-dev
+namespace: messageboard-staging
 resources:
 - ../../base
 
 images:
 - name: gitauwairimu/messageboard
   newName: gitauwairimu/messageboard
-  newTag: 344d6e8b174601aab2a08b25e54ff1afdb3023ff
+  newTag: 99d44772d74f4afa4639021e629601bcc7c0dfce
 
 patchesStrategicMerge:
 - patch-deployment.yaml
