@@ -1,3 +1,6 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 namespace: messageboard-staging
 resources:
 - ../../base
@@ -8,8 +11,6 @@ images:
   newName: gitauwairimu/messageboard
   newTag: da4ee2088bf5821822df4f7e9b3923416f0b97d2
 
-patchesStrategicMerge:
-- patch-deployment.yaml
-- patch-service.yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
+patches:
+  - path: patch-deployment.yaml
+  - path: patch-service.yaml

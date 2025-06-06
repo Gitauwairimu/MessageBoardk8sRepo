@@ -1,19 +1,13 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
   name: my-app
 spec:
-  replicas: 1  # This can be overridden in overlays
+  type: NodePort
   selector:
-    matchLabels:
-      app: my-app  # This should be stable (you can choose a general app name)
-  template:
-    metadata:
-      labels:
-        app: my-app  # Default label — will be patched in overlays
-    spec:
-      containers:
-        - name: my-app
-          image: gitauwairimu/messageboard:latest
-          ports:
-            - containerPort: 8080
+    app: my-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodePort: 30080
