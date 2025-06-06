@@ -1,6 +1,7 @@
 namespace: messageboard-staging
 resources:
 - ../../base
+- namespace.yaml
 
 images:
 - name: gitauwairimu/messageboard

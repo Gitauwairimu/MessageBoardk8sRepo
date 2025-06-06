@@ -1,6 +1,7 @@
 namespace: messageboard-dev
 resources:
 - ../../base
+- namespace.yaml
 
 images:
 - name: gitauwairimu/messageboard
