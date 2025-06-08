@@ -5,6 +5,7 @@ namespace: messageboard-dev
 resources:
 - ../../base
 - namespace.yaml
+- patch-rollout.yaml
 
 images:
 - name: gitauwairimu/messageboard
@@ -12,6 +13,6 @@ images:
   newTag: 25bf8263fb945f7caca7119256adb06f09dcf007
 
 patches:
-  - path: patch-rollout.yaml
+  # - path: patch-rollout.yaml
   # - path: patch-deployment.yaml
   - path: patch-service.yaml
