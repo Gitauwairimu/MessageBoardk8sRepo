@@ -6,6 +6,6 @@ resources:
   - sealed-secret.yaml
   - service-monitor.yaml 
 
-commonLabels:
+labels:
   app: my-app
   monitor: prometheus   # Required for ServiceMonitor discovery
