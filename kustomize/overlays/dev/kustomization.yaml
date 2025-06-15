@@ -5,7 +5,6 @@ namespace: messageboard-dev
 resources:
 - ../../base
 - namespace.yaml
-# - patch-rollout.yaml
 - sealed-secret.yaml
 
 images:

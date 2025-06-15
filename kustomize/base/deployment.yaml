@@ -12,8 +12,8 @@ spec:
       labels:
         app: my-app  # Will be patched by overlays
     spec:
-      imagePullSecrets:
-        - name: dockerhub-creds
+      # imagePullSecrets:
+      #   - name: dockerhub-creds
       containers:
         - name: my-app
           image: gitauwairimu/messageboard:latest
