@@ -6,7 +6,7 @@ resources:
 - service.yaml
 - sealed-secret.yaml
 - service-monitor.yaml
-- prometheus-patch.yaml
+
 
 # labels:
 # - pairs:
