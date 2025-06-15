@@ -21,6 +21,10 @@ spec:
         prometheus.io/port: "8080"    # Metrics port
         prometheus.io/path: "/actuator/prometheus"  # Spring Actuator endpoint
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 2000
       imagePullSecrets:
         - name: dockerhub-creds
       containers:
