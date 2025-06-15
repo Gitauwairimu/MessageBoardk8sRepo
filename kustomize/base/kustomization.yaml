@@ -1,11 +1,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - deployment.yaml
-  - service.yaml
-  - sealed-secret.yaml
-  - service-monitor.yaml 
+- deployment.yaml
+- service.yaml
+- sealed-secret.yaml
+- service-monitor.yaml
 
-commonLabels:
-  app: my-app
-  monitor: prometheus
+labels:
+- pairs:
+    app: my-app
+    monitor: prometheus
