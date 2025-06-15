@@ -36,34 +36,34 @@ spec:
               containerPort: 8080
               protocol: TCP
           # Resource limits
-          resources:
-            requests:
-              cpu: "700m"    # 0.1 CPU core
-              memory: "512Mi" # 256 MB RAM
-            limits:
-              cpu: "1000m"     # 0.5 CPU core
-              memory: "1024Mi" # 512 MB RAM
-          # Health checks
-          livenessProbe:
-            httpGet:
-              path: /actuator/health/liveness
-              port: http
-            initialDelaySeconds: 30  # Wait 30s before first check
-            periodSeconds: 10        # Check every 10s
-            timeoutSeconds: 5        # Timeout after 5s
-            failureThreshold: 3      # 3 failures = unhealthy
-          readinessProbe:
-            httpGet:
-              path: /actuator/health/readiness
-              port: http
-            initialDelaySeconds: 15  # Faster than liveness
-            periodSeconds: 5
-            timeoutSeconds: 3
-            failureThreshold: 3
-          # Optional startup probe for slow-starting apps
-          startupProbe:
-            httpGet:
-              path: /actuator/health
-              port: http
-            failureThreshold: 30     # 30 attempts max
-            periodSeconds: 10        # Check every 10s
+          # resources:
+          #   requests:
+          #     cpu: "700m"    # 0.1 CPU core
+          #     memory: "512Mi" # 256 MB RAM
+          #   limits:
+          #     cpu: "1000m"     # 0.5 CPU core
+          #     memory: "1024Mi" # 512 MB RAM
+          # # Health checks
+          # livenessProbe:
+          #   httpGet:
+          #     path: /actuator/health/liveness
+          #     port: http
+          #   initialDelaySeconds: 30  # Wait 30s before first check
+          #   periodSeconds: 10        # Check every 10s
+          #   timeoutSeconds: 5        # Timeout after 5s
+          #   failureThreshold: 3      # 3 failures = unhealthy
+          # readinessProbe:
+          #   httpGet:
+          #     path: /actuator/health/readiness
+          #     port: http
+          #   initialDelaySeconds: 15  # Faster than liveness
+          #   periodSeconds: 5
+          #   timeoutSeconds: 3
+          #   failureThreshold: 3
+          # # Optional startup probe for slow-starting apps
+          # startupProbe:
+          #   httpGet:
+          #     path: /actuator/health
+          #     port: http
+          #   failureThreshold: 30     # 30 attempts max
+          #   periodSeconds: 10        # Check every 10s
