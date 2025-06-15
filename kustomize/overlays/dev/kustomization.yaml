@@ -10,7 +10,7 @@ resources:
 images:
 - name: gitauwairimu/messageboard
   newName: gitauwairimu/messageboard
-  newTag: 4c969dc49c72e94799d5b949a1a54d0a3d00cbe1
+  newTag: d54360cbf54bd168d2c7909876c951875dbdfe72
 
 
 patches:
