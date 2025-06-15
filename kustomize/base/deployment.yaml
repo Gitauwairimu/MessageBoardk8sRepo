@@ -61,9 +61,9 @@ spec:
             timeoutSeconds: 3
             failureThreshold: 3
           # Optional startup probe for slow-starting apps
-          startupProbe:
-            httpGet:
-              path: /actuator/health
-              port: http
-            failureThreshold: 30     # 30 attempts max
-            periodSeconds: 10        # Check every 10s
+          # startupProbe:
+          #   httpGet:
+          #     path: /actuator/health
+          #     port: http
+          #   failureThreshold: 30     # 30 attempts max
+          #   periodSeconds: 10        # Check every 10s
