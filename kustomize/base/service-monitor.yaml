@@ -2,10 +2,12 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: my-app-monitor
+  labels:
+    release: prometheus  # Must match Prometheus' selector
 spec:
   selector:
     matchLabels:
-      app: my-app
+      app: my-app  # Matches your service labels
   endpoints:
   - port: http
     path: /actuator/prometheus

@@ -1,12 +1,17 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: messageboard-dev
 resources:
 - deployment.yaml
 - service.yaml
 - sealed-secret.yaml
 - service-monitor.yaml
+- prometheus-patch.yaml
 
 # labels:
 # - pairs:
 #     app: my-app
 #     monitor: prometheus
+commonLabels:
+  app: my-app
+  monitor: prometheus
