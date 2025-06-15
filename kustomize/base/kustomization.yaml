@@ -4,3 +4,8 @@ resources:
   - deployment.yaml
   - service.yaml
   - sealed-secret.yaml
+  - service-monitor.yaml 
+
+commonLabels:
+  app: my-app
+  monitor: prometheus   # Required for ServiceMonitor discovery
