@@ -5,10 +5,12 @@
 This repository manages the Kubernetes manifests and deployment pipeline for the application across `dev`, `staging`, and `prod` environments using:
 ---
 
-- **Github Actions** CICD pipeline
-- **Kustomize** for environment-specific configuration
-- **Argo CD** for GitOps-based continuous deployment
-- **Sealed Secrets** for secure management of Kubernetes secrets
+- ✅ **GitHub Actions** for CI/CD
+- 🧩 **Kustomize** for environment-specific configurations
+- 🚀 **Argo CD** for continuous deployment
+- 🔐 **Sealed Secrets** for secure secret management
+- 📡 **Prometheus + Alertmanager** for monitoring and alerting
+
 
 ---
 
@@ -57,12 +59,19 @@ This repository manages the Kubernetes manifests and deployment pipeline for the
 
 # 🚀 CI/CD Pipeline for Java Spring Boot with GitHub Actions
 
-This project includes a GitHub Actions-based CI/CD pipeline that:
+🔧 This project includes a GitHub Actions-based CI/CD pipeline that:
 
-1. Builds the Java Spring Boot application using Maven
-2. Packages the app as a Docker image
-3. Pushes the image to Docker Hub
-4. Triggers deployment in Argo CD
+🧾 Checks out code
+
+☕ Builds Java 17 Spring Boot app with Maven
+
+🐳 Builds and pushes Docker image to Docker Hub
+
+🖊 Updates the image tag in the corresponding Kustomize overlay
+
+🔁 Commits the updated kustomization.yaml back to the repo
+
+🚀 Triggers deployment in Argo CD
 
 ---
 
@@ -138,9 +147,6 @@ Automated monitoring solution for Kubernetes clusters with built-in CI/CD integr
 
 ## Deployment
 
-### Automated Installation
-
-
 ---
 
 ## 🛡 CI/CD Integration
@@ -177,8 +183,6 @@ You can include Git push automation in CI/CD tools like GitHub Actions:
           git push
 
 
-
-md
 ## ⚙️ Argo CD Application Manifest
 
 The above YAML defines an Argo CD Application that:
