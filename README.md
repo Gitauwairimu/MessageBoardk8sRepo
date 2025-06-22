@@ -1,1 +1,147 @@
 # MessageBoardk8sRepo
+
+# 🚀 GitOps-Based Kubernetes Deployment with Github Actions, Argo CD, Kustomize & Sealed Secrets
+
+This repository manages the Kubernetes manifests and deployment pipeline for the application across `dev`, `staging`, and `prod` environments using:
+---
+
+- **Github Actions** CICD pipeline
+- **Kustomize** for environment-specific configuration
+- **Argo CD** for GitOps-based continuous deployment
+- **Sealed Secrets** for secure management of Kubernetes secrets
+
+---
+
+## 📁 Repository Structure
+
+```bash
+.
+├── base/
+│   ├── deployment.yaml           # Core Deployment spec
+│   ├── kustomization.yaml        # Base kustomization file
+│   ├── service.yaml              # Main service definition
+│   ├── service-monitor.yaml     # Additional service (e.g., for monitoring)
+│
+├── overlays/
+│   ├── dev/
+│   │   ├── kustomization.yaml
+│   │   ├── patch-deployment.yaml
+│   │   ├── patch-secret.yaml
+│   │   ├── patch-service.yaml
+│   │   ├── patch-prometheus.yaml
+│   │   └── namespace.yaml
+│   ├── staging/
+│   │   └── ...
+│   └── prod/
+│       └── ...
+│
+│── argo/
+│   ├── dev-app.yaml              # Argo CD application for dev
+│   ├── staging-app.yaml          # Argo CD application for staging
+│   └── prod-app.yaml             # Argo CD application for prod
+
+
+# 🚀 CI/CD Pipeline for Java Spring Boot with GitHub Actions
+
+This project includes a GitHub Actions-based CI/CD pipeline that:
+
+1. Builds the Java Spring Boot application using Maven
+2. Packages the app as a Docker image
+3. Pushes the image to Docker Hub
+4. (Optional) Triggers deployment in Argo CD
+
+---
+
+## 📂 Workflow File
+
+The GitHub Actions workflow is defined in:
+.github/workflows/docker-build-push.yml
+
+---
+
+## 🧰 Prerequisites
+
+Before using this workflow, make sure the following are set up:
+
+- A valid `Dockerfile` in the project root (for building your Spring Boot app)
+- A [Docker Hub account](https://hub.docker.com/)
+- GitHub repository secrets:
+
+| Secret Name           | Description                                |
+|-----------------------|--------------------------------------------|
+| `DOCKERHUB_USERNAME`  | Your Docker Hub username                   |
+| `DOCKERHUB_TOKEN`     | Docker Hub [access token](https://hub.docker.com/settings/security) |
+| `ARGOCD_SERVER`       | *(Optional)* Argo CD server URL (e.g. https://argocd.example.com) |
+| `ARGOCD_AUTH_TOKEN`   | *(Optional)* Argo CD API token             |
+
+---
+
+## ⚙️ What the Pipeline Does
+
+### On Push to `main` or `release/*` Branches:
+
+- 🛠️ Checks out code
+- ☕ Sets up Java 17 (Temurin)
+- 📦 Builds the project using Maven (tests skipped by default)
+- 🐳 Builds a Docker image
+- 🔖 Tags the image as:
+  - `latest`
+  - Git short SHA (e.g., `a1b2c3d`)
+- 🚀 Pushes the image to Docker Hub
+
+### Optional Argo CD Sync
+
+If configured, it can also trigger a sync of your Argo CD application after pushing the new image.
+
+---
+
+## 📝 Dockerfile Example (Spring Boot)
+
+Here’s a simple Dockerfile to get you started:
+
+```dockerfile
+FROM eclipse-temurin:17-jdk-jammy
+WORKDIR /app
+COPY target/webapp-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+
+# Kubernetes Monitoring Stack (Prometheus + Alertmanager)
+
+![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=white)
+![Alertmanager](https://img.shields.io/badge/Alertmanager-FFA500?style=for-the-badge)
+![Helm](https://img.shields.io/badge/Helm-0F1689?style=for-the-badge&logo=Helm&logoColor=white)
+
+Automated monitoring solution for Kubernetes clusters with built-in CI/CD integration practices.
+
+
+### Key DevOps Focus Areas Included:
+1. **CI/CD Integration** - Used Github Actions for pipeline automation
+2. **GitOps Ready**: Designed for ArgoCD integration
+3. **Automated Alerting**: Pre-configured alert rules with severity levels
+4. **Self-Healing**: Built-in alert resolution tracking
+5. **Scalable**: HA-ready Alertmanager configuration
+
+## Deployment
+
+### ✅ Prerequisites
+- Kubernetes cluster (EKS, GKE, Minikube, etc.) - v1.19+
+- Helm (v3.2.0+)
+- kubectl configured with cluster access
+- Tools: kubectl, kustomize, kubeseal, argocd
+- Sealed Secrets controller installed in the cluster
+- Argo CD installed and configured to track this repository
+
+### Automated Installation
+```bash
+# Using Helm with CI/CD variables
+helm upgrade --install prometheus prometheus-community/kube-prometheus-stack \
+  -n monitoring --create-namespace \
+  -f values.yaml \
+  --set alertmanager.enabled=true \
+  --atomic --wait
+
+
+
+
+
