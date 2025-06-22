@@ -59,7 +59,7 @@ This project includes a GitHub Actions-based CI/CD pipeline that:
 1. Builds the Java Spring Boot application using Maven
 2. Packages the app as a Docker image
 3. Pushes the image to Docker Hub
-4. (Optional) Triggers deployment in Argo CD
+4. Triggers deployment in Argo CD
 
 ---
 
@@ -93,7 +93,7 @@ Before using this workflow, make sure the following are set up:
 
 - 🛠️ Checks out code
 - ☕ Sets up Java 17 (Temurin)
-- 📦 Builds the project using Maven (tests skipped by default)
+- 📦 Builds the project using Maven
 - 🐳 Builds a Docker image
 - 🔖 Tags the image as:
   - `latest`
@@ -140,9 +140,6 @@ Automated monitoring solution for Kubernetes clusters with built-in CI/CD integr
 
 ---
 
-### 🛡 CI/CD Trigger (Optional)
-
-```md
 ## 🛡 CI/CD Integration
 
 You can include Git push automation in CI/CD tools like GitHub Actions:
@@ -238,9 +235,7 @@ argocd app sync my-app
 
 ---
 
-### 🛠 Update Workflow
 
-```md
 ## 🛠 Update Workflow
 
 1. Make changes to your YAML or Kustomize files.
