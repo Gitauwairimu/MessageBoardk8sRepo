@@ -250,3 +250,16 @@ argocd app sync my-app
 3. Argo CD detects the change and applies it to the cluster automatically.
 
 No need to manually `kubectl apply`.
+
+
+📡 Monitoring & Alerting
+This setup includes a monitoring stack with Prometheus and Alertmanager.
+
+Features:
+🔔 Pre-configured alerts with severity levels
+
+🛡️ Self-healing notifications
+
+📈 Custom ServiceMonitor support
+
+☸️ Integrated with CI/CD pipelines
