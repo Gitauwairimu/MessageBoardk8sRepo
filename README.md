@@ -12,6 +12,17 @@ This repository manages the Kubernetes manifests and deployment pipeline for the
 
 ---
 
+### ✅ Prerequisites
+- Kubernetes cluster (EKS, GKE, Minikube, etc.) - v1.19+
+- Helm (v3.2.0+)
+- kubectl configured with cluster access
+- Tools: kubectl, kustomize, kubeseal, argocd
+- Sealed Secrets controller installed in the cluster
+- Argo CD installed and configured to track this repository
+
+
+---
+
 ## 📁 Repository Structure
 
 ```bash
@@ -97,7 +108,7 @@ If configured, it can also trigger a sync of your Argo CD application after push
 
 ## 📝 Dockerfile Example (Spring Boot)
 
-Here’s a simple Dockerfile to get you started:
+Here’s the Dockerfile:
 
 ```dockerfile
 FROM eclipse-temurin:17-jdk-jammy
@@ -124,13 +135,6 @@ Automated monitoring solution for Kubernetes clusters with built-in CI/CD integr
 
 ## Deployment
 
-### ✅ Prerequisites
-- Kubernetes cluster (EKS, GKE, Minikube, etc.) - v1.19+
-- Helm (v3.2.0+)
-- kubectl configured with cluster access
-- Tools: kubectl, kustomize, kubeseal, argocd
-- Sealed Secrets controller installed in the cluster
-- Argo CD installed and configured to track this repository
 
 ### Automated Installation
 ```bash
