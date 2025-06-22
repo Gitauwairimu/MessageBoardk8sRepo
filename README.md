@@ -135,15 +135,48 @@ Automated monitoring solution for Kubernetes clusters with built-in CI/CD integr
 
 ## Deployment
 
-
 ### Automated Installation
-```bash
-# Using Helm with CI/CD variables
-helm upgrade --install prometheus prometheus-community/kube-prometheus-stack \
-  -n monitoring --create-namespace \
-  -f values.yaml \
-  --set alertmanager.enabled=true \
-  --atomic --wait
+
+
+---
+
+### 🛡 CI/CD Trigger (Optional)
+
+```md
+## 🛡 CI/CD Integration
+
+You can include Git push automation in CI/CD tools like GitHub Actions:
+
+```yaml
+      - name: Determine overlay path
+        id: overlay
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "OVERLAY=prod" >> "$GITHUB_ENV"
+          elif [[ "${{ github.ref }}" == "refs/heads/staging" ]]; then
+            echo "OVERLAY=staging" >> "$GITHUB_ENV"
+          elif [[ "${{ github.ref }}" == "refs/heads/dev" ]]; then
+            echo "OVERLAY=dev" >> "$GITHUB_ENV"
+          else
+            echo "Unsupported branch: ${{ github.ref }}"
+            exit 1
+          fi
+
+      - name: Update image tag in Kustomization
+        run: |
+          cd k8s-repo/kustomize/overlays/${{ env.OVERLAY }}
+          kustomize edit set image gitauwairimu/messageboard=gitauwairimu/messageboard:${{ github.sha }}
+
+      - name: Commit and push changes
+        run: |
+          cd k8s-repo
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add kustomize/overlays/${{ env.OVERLAY }}/kustomization.yaml
+          git commit -m "Update image for ${{ env.OVERLAY }} to ${{ github.sha }}"
+          git push
+
+
 
 
 ## ⚙️ Argo CD Application Manifest
@@ -155,37 +188,38 @@ The above YAML defines an Argo CD Application that:
 
 
 # dev-argo-app.yaml
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: messageboard-dev
-  namespace: argocd
-# data:
-#   application.resync.period: 60s
-spec:
-  project: default
-  source:
-    repoURL: https://github.com/gitauwairimu/MessageBoardk8sRepo
-    targetRevision: main
-    path: kustomize/overlays/dev
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: messageboard-dev
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
-  ignoreDifferences:
-  - group: bitnami.com
-    kind: SealedSecret
-    jsonPointers:
-    - /status
-  - group: monitoring.coreos.com
-    kind: Prometheus
-    jsonPointers:
-    - /status
+```yaml
+    apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: messageboard-dev
+      namespace: argocd
+    # data:
+    #   application.resync.period: 60s
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/gitauwairimu/MessageBoardk8sRepo
+        targetRevision: main
+        path: kustomize/overlays/dev
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: messageboard-dev
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+      ignoreDifferences:
+      - group: bitnami.com
+        kind: SealedSecret
+        jsonPointers:
+        - /status
+      - group: monitoring.coreos.com
+        kind: Prometheus
+        jsonPointers:
+        - /status
 
 
 
