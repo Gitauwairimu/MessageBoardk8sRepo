@@ -56,6 +56,7 @@ This repository manages the Kubernetes manifests and deployment pipeline for the
 - `base/` contains shared configurations.
 - `overlays/` contains environment-specific patches and settings.
 
+---
 
 # 🚀 CI/CD Pipeline for Java Spring Boot with GitHub Actions
 
@@ -128,6 +129,7 @@ WORKDIR /app
 COPY target/webapp-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
+---
 
 # Kubernetes Monitoring Stack (Prometheus + Alertmanager)
 
@@ -182,6 +184,8 @@ You can include Git push automation in CI/CD tools like GitHub Actions:
           git commit -m "Update image for ${{ env.OVERLAY }} to ${{ github.sha }}"
           git push
 
+---
+
 
 ## ⚙️ Argo CD Application Manifest
 
@@ -225,7 +229,7 @@ The above YAML defines an Argo CD Application that:
         jsonPointers:
         - /status
 
-
+---
 
 ## 🔁 Sync Behavior
 
@@ -251,6 +255,7 @@ argocd app sync my-app
 
 No need to manually `kubectl apply`.
 
+---
 
 📡 Monitoring & Alerting
 This setup includes a monitoring stack with Prometheus and Alertmanager.
