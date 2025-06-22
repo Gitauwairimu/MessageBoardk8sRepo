@@ -146,6 +146,71 @@ helm upgrade --install prometheus prometheus-community/kube-prometheus-stack \
   --atomic --wait
 
 
+## ⚙️ Argo CD Application Manifest
+
+The above YAML defines an Argo CD Application that:
+- Watches the `dev` overlay in this Git repo.
+- Applies changes to the `messageboard-dev` namespace.
+- Auto-syncs when changes are pushed to the repo.
+
+
+# dev-argo-app.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: messageboard-dev
+  namespace: argocd
+# data:
+#   application.resync.period: 60s
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/gitauwairimu/MessageBoardk8sRepo
+    targetRevision: main
+    path: kustomize/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: messageboard-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  ignoreDifferences:
+  - group: bitnami.com
+    kind: SealedSecret
+    jsonPointers:
+    - /status
+  - group: monitoring.coreos.com
+    kind: Prometheus
+    jsonPointers:
+    - /status
 
 
 
+## 🔁 Sync Behavior
+
+This setup uses **auto-sync** with:
+- `prune: true` – Removes Kubernetes resources not found in Git.
+- `selfHeal: true` – Fixes out-of-sync resources automatically.
+
+To trigger manual sync (if auto-sync is disabled):
+
+```bash
+argocd app sync my-app
+
+
+
+---
+
+### 🛠 Update Workflow
+
+```md
+## 🛠 Update Workflow
+
+1. Make changes to your YAML or Kustomize files.
+2. Commit and push to the Git repo.
+3. Argo CD detects the change and applies it to the cluster automatically.
+
+No need to manually `kubectl apply`.
