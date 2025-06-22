@@ -2,7 +2,7 @@
 
 # 🚀 GitOps-Based Kubernetes Deployment with Github Actions, Argo CD, Kustomize & Sealed Secrets
 
-This repository manages the Kubernetes manifests and deployment pipeline for the application across `dev`, `staging`, and `prod` environments using:
+### This repository manages the Kubernetes manifests and deployment pipeline for the application across `dev`, `staging`, and `prod` environments using:
 ---
 
 - ✅ **GitHub Actions** for CI/CD
