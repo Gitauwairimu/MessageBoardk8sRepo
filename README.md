@@ -47,9 +47,12 @@ This repository manages the Kubernetes manifests and deployment pipeline for the
 │       └── ...
 │
 │── argo/
-│   ├── dev-app.yaml              # Argo CD application for dev
-│   ├── staging-app.yaml          # Argo CD application for staging
-│   └── prod-app.yaml             # Argo CD application for prod
+    ├── dev-app.yaml              # Argo CD application for dev
+    ├── staging-app.yaml          # Argo CD application for staging
+    └── prod-app.yaml             # Argo CD application for prod
+
+- `base/` contains shared configurations.
+- `overlays/` contains environment-specific patches and settings.
 
 
 # 🚀 CI/CD Pipeline for Java Spring Boot with GitHub Actions
@@ -175,7 +178,7 @@ You can include Git push automation in CI/CD tools like GitHub Actions:
 
 
 
-
+md
 ## ⚙️ Argo CD Application Manifest
 
 The above YAML defines an Argo CD Application that:
