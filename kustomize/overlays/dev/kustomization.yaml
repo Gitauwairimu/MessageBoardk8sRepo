@@ -5,6 +5,8 @@ namespace: messageboard-dev
 resources:
 - ../../base
 - namespace.yaml
+- ingress.yaml
+
 # - https://github.com/prometheus-operator/kube-prometheus?ref=v0.11.0
 
 images:

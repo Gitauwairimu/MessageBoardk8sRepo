@@ -5,6 +5,8 @@ namespace: messageboard-prod
 resources:
 - ../../base
 - namespace.yaml
+- ingress.yaml
+
 
 images:
 - name: gitauwairimu/messageboard
