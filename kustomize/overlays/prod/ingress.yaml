@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: prod-ingress
+  namespace: messageboard-prod
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -16,4 +17,4 @@ spec:
           service:
             name: my-app
             port:
-              number: 30083
+              number: 80

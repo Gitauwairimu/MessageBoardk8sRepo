@@ -38,11 +38,11 @@ spec:
           # Resource limits
           resources:
             requests:
-              cpu: "700m"    # 0.1 CPU core
-              memory: "512Mi" # 256 MB RAM
+              cpu: "250m"    # 0.1 CPU core
+              memory: "312Mi" # 256 MB RAM
             limits:
-              cpu: "1000m"     # 0.5 CPU core
-              memory: "1024Mi" # 512 MB RAM
+              cpu: "300m"     # 0.5 CPU core
+              memory: "424Mi" # 512 MB RAM
           # Health checks
           livenessProbe:
             httpGet:
