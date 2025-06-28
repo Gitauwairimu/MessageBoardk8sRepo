@@ -30,7 +30,7 @@ spec:
   tls:
   - hosts:
     - dev.messageboard.local
-    secretName: dev-messageboard-tls 
+    secretName: messageboard-tls 
   rules:
   - host: dev.messageboard.local
     http:
