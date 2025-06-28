@@ -27,6 +27,10 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - dev.messageboard.local
+    secretName: dev-messageboard-tls 
   rules:
   - host: dev.messageboard.local
     http:
