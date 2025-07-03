@@ -52,15 +52,15 @@ spec:
             periodSeconds: 10        # Check every 10s
             timeoutSeconds: 5        # Timeout after 5s
             failureThreshold: 3      # 3 failures = unhealthy
-          # readinessProbe:
-          #   httpGet:
-          #     path: /actuator/health/readiness
-          #     port: http
-          #   initialDelaySeconds: 15  # Faster than liveness
-          #   periodSeconds: 5
-          #   timeoutSeconds: 3
-          #   failureThreshold: 3
-          # # Optional startup probe for slow-starting apps
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: http
+            initialDelaySeconds: 15  # Faster than liveness
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+          # Optional startup probe for slow-starting apps
           # startupProbe:
           #   httpGet:
           #     path: /actuator/health
