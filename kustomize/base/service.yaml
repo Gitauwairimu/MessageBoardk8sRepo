@@ -2,6 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: my-app
+  labels:
+    app: my-app
+    app.kubernetes.io/instance: my-app
   annotations:
     argocd.argoproj.io/refresh: "hard"
     argocd.argoproj.io/port: "80"

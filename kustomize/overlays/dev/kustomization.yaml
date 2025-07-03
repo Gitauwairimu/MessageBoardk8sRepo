@@ -20,4 +20,3 @@ patches:
 - path: patch-service.yaml
 - path: patch-rollout.yaml
 - path: prometheus-patch.yaml
-- path: patch-service.yaml
