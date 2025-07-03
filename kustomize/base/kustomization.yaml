@@ -6,7 +6,7 @@ resources:
 - rollout.yaml
 - service.yaml
 - sealed-secret.yaml
-# - service-monitor.yaml
+- service-monitor.yaml
 # - sealed-tls-secret.yaml
 
 
