@@ -12,12 +12,12 @@ resources:
 images:
 - name: gitauwairimu/messageboard
   newName: gitauwairimu/messageboard
-  newTag: d54360cbf54bd168d2c7909876c951875dbdfe72
+  newTag: 18c1fcd91b58bfb100ee2a1a52c290d2117ef825
 
 
+# - path: patch-deployment.yaml
 patches:
 - path: patch-service.yaml
-# - path: patch-deployment.yaml
 - path: patch-rollout.yaml
 - path: prometheus-patch.yaml
 - path: patch-service.yaml
