@@ -1,15 +1,3 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Rollout
-# metadata:
-#   name: my-app  # Must match base rollout name
-# spec:
-#   replicas: 2
-#   template:
-#     metadata:
-#       labels:
-#         app: my-app  # This label must match selector in base
-
-
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
