@@ -35,6 +35,9 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+          env:
+            - name: SERVER_ADDRESS
+              value: "0.0.0.0"
           resources:
             requests:
               cpu: "250m"
