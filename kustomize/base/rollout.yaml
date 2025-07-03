@@ -28,9 +28,6 @@ spec:
       imagePullSecrets:
         - name: dockerhub-creds
       containers:
-        env:
-        - name: SERVER_ADDRESS
-          value: "0.0.0.0"
         - name: my-app
           image: gitauwairimu/messageboard:latest
           imagePullPolicy: Always
