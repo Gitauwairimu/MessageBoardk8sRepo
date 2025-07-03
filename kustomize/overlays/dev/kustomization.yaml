@@ -17,5 +17,6 @@ images:
 
 patches:
 - path: patch-service.yaml
-- path: patch-deployment.yaml
+# - path: patch-deployment.yaml
+- path: patch-rollout.yaml
 - path: prometheus-patch.yaml
