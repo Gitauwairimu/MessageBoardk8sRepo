@@ -1,12 +1,36 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: dev-ingress
+#   namespace: messageboard-dev
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#   - host: dev.messageboard.local
+#     http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: my-app
+#             port:
+#               number: 30081
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: prod-ingress
+  name: dev-ingress
   namespace: messageboard-prod
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - prod.messageboard.local
+    secretName: messageboard-tls 
   rules:
   - host: prod.messageboard.local
     http:
