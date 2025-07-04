@@ -16,7 +16,7 @@ resources:
 images:
 - name: gitauwairimu/messageboard
   newName: gitauwairimu/messageboard
-  newTag: d10639919d294bc54c4dec907873dc538df90956
+  newTag: e305785f83a3f0979cc6c2776a22945eeb2afbd2
 
 
 # - path: patch-deployment.yaml
