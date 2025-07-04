@@ -5,6 +5,10 @@ namespace: messageboard-dev
 resources:
 - ../../base
 - namespace.yaml
+- db-config.yaml
+- sealed-db-secret.yaml
+- postgres.yaml
+- postgres-pvc.yaml
 # - ingress.yaml
 
 # - https://github.com/prometheus-operator/kube-prometheus?ref=v0.11.0
