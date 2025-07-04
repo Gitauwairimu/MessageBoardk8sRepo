@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: my-app  # Must match base rollout name
+  name: my-app
 spec:
   replicas: 3
   selector:
@@ -13,3 +13,4 @@ spec:
         app: my-app
         version: "v1.0.0"  # 🔁 Version label retained
         app.kubernetes.io/instance: my-app
+        
