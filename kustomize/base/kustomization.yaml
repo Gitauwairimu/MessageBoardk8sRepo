@@ -7,7 +7,6 @@ resources:
 - service.yaml
 - sealed-secret.yaml
 - service-monitor.yaml
-- h2-pvc.yaml
 # - sealed-tls-secret.yaml
 
 
