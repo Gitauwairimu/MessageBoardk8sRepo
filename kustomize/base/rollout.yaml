@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: my-app
-  namespace: messageboard-dev
   labels:
     app: my-app
     version: "v1.0.0"
@@ -61,3 +60,82 @@ spec:
         - setWeight: 50
         - pause: { duration: 60 }
         - setWeight: 100
+
+
+# .....
+
+
+
+# metadata:
+#   name: my-app
+#   labels:
+#     app: my-app
+#     version: "v1.0.0"
+#     app.kubernetes.io/instance: my-app
+# spec:
+#   replicas: 1
+#   revisionHistoryLimit: 5
+#   selector:
+#     matchLabels:
+#       app: my-app
+  # template:
+  #   metadata:
+  #     labels:
+  #       app: my-app
+  #       version: "v1.0.0"
+  #       monitor: prometheus
+  #       app.kubernetes.io/instance: my-app
+  #     annotations:
+  #       prometheus.io/scrape: "true"
+  #       prometheus.io/port: "8080"
+  #       prometheus.io/path: "/actuator/prometheus"
+  #   spec:
+  #     securityContext:
+  #       runAsNonRoot: true
+  #       runAsUser: 1000
+  #       fsGroup: 2000
+  #     imagePullSecrets:
+  #       - name: dockerhub-creds
+  #     containers:
+  #       - name: my-app
+  #         image: gitauwairimu/messageboard:latest
+  #         imagePullPolicy: Always
+  #         ports:
+  #           - name: http
+  #             containerPort: 8080
+  #             protocol: TCP
+  #         volumeMounts:
+  #         - name: data-volume
+  #           mountPath: /data
+  #         resources:
+  #           requests:
+  #             cpu: "250m"
+  #             memory: "312Mi"
+  #           limits:
+  #             cpu: "300m"
+  #             memory: "424Mi"
+  #         # livenessProbe:
+  #         #   httpGet:
+  #         #     path: /actuator/health/liveness
+  #         #     port: http
+  #         #   initialDelaySeconds: 30
+  #         #   periodSeconds: 10
+  #         #   timeoutSeconds: 5
+  #         #   failureThreshold: 3
+  #         # readinessProbe:
+  #         #   httpGet:
+  #         #     path: /actuator/health/readiness
+  #         #     port: http
+  #         #   initialDelaySeconds: 45
+  #         #   periodSeconds: 5
+  #         #   timeoutSeconds: 3
+  #         #   failureThreshold: 3
+
+  # strategy:
+  #   canary:
+  #     steps:
+  #       - setWeight: 20
+  #       - pause: { duration: 30 }
+  #       - setWeight: 50
+  #       - pause: { duration: 60 }
+  #       - setWeight: 100
