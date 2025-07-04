@@ -20,6 +20,7 @@ spec:
 
       containers:
         - name: my-app
+          image: gitauwairimu/messageboard:latest 
           env:
             - name: SPRING_DATASOURCE_URL
               valueFrom:
