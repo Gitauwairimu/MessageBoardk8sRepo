@@ -1,0 +1,10 @@
+# kustomize/overlays/dev/db-config.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+  namespace: messageboard-dev
+data:
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-service:5432/messageboard
+  SPRING_DATASOURCE_DRIVER: org.h2.Driver
+  SPRING_JPA_PLATFORM: org.hibernate.dialect.H2Dialect
