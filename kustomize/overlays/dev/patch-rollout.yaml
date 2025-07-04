@@ -13,4 +13,38 @@ spec:
         app: my-app
         version: "v1.0.0"  # 🔁 Version label retained
         app.kubernetes.io/instance: my-app
+    spec:
+      initContainers:
+        - name: wait-for-postgres
+          image: busybox:1.36
+
+      containers:
+        - name: my-app
+          env:
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: SPRING_DATASOURCE_URL
+            - name: SPRING_DATASOURCE_DRIVER
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: SPRING_DATASOURCE_DRIVER
+            - name: SPRING_JPA_PLATFORM
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: SPRING_JPA_PLATFORM
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: POSTGRES_USER
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: POSTGRES_PASSWORD
+
         
