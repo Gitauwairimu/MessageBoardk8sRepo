@@ -17,6 +17,7 @@ spec:
       labels:
         app: my-app
         version: "v1.0.0"
+        monitor: prometheus
         app.kubernetes.io/instance: my-app
       annotations:
         prometheus.io/scrape: "true"
