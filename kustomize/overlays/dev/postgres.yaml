@@ -1,82 +1,11 @@
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: postgres
-#   namespace: messageboard-dev
-#   labels:
-#     app: postgres
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       app: postgres
-#   template:
-#     metadata:
-#       labels:
-#         app: postgres
-#     spec:
-#       containers:
-#         - name: postgres
-#           image: postgres:15
-#           ports:
-#             - containerPort: 5432
-#           env:
-#             - name: POSTGRES_DB
-#               value: messageboard
-#             - name: POSTGRES_USER
-#               valueFrom:
-#                 secretKeyRef:
-#                   name: db-secret
-#                   key: POSTGRES_USER
-#             - name: POSTGRES_PASSWORD
-#               valueFrom:
-#                 secretKeyRef:
-#                   name: db-secret
-#                   key: POSTGRES_PASSWORD
-#           volumeMounts:
-#             - mountPath: /var/lib/postgresql/data
-#               name: postgres-storage
-#           resources:
-#             requests:
-#               memory: "512Mi"
-#               cpu: "250m"
-#             limits:
-#               memory: "1Gi"
-#               cpu: "500m"
-#       volumeMounts:
-#         - name: postgres-storage
-#           mountPath: /var/lib/postgresql/data
-#       volumes:
-#         - name: postgres-storage
-#           persistentVolumeClaim:
-#             claimName: postgres-data-pvc
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: postgres-service
-#   namespace: messageboard-dev
-#   labels:
-#     app: postgres
-# spec:
-#   type: ClusterIP
-#   selector:
-#     app: postgres
-#   ports:
-#     - port: 5432
-#       targetPort: 5432
-
-
-
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: postgres
   namespace: messageboard-dev
   labels:
     app: postgres
 spec:
-  serviceName: postgres-headless  # Matches headless service name
   replicas: 1
   selector:
     matchLabels:
@@ -105,8 +34,8 @@ spec:
                   name: db-secret
                   key: POSTGRES_PASSWORD
           volumeMounts:
-            - name: postgres-data
-              mountPath: /var/lib/postgresql/data
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-storage
           resources:
             requests:
               memory: "512Mi"
@@ -114,37 +43,21 @@ spec:
             limits:
               memory: "1Gi"
               cpu: "500m"
-      securityContext:
-        fsGroup: 999  # PostgreSQL's default group
-  volumeClaimTemplates:  # Auto-creates PVC for each replica
-    - metadata:
-        name: postgres-data
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        resources:
-          requests:
-            storage: 10Gi
+      volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-data-pvc
 ---
-# Headless Service for direct pod access
-apiVersion: v1
-kind: Service
-metadata:
-  name: postgres-headless
-  namespace: messageboard-dev
-spec:
-  clusterIP: None  # Makes it headless
-  selector:
-    app: postgres
-  ports:
-    - port: 5432
-      targetPort: 5432
----
-# Regular Service for application access
 apiVersion: v1
 kind: Service
 metadata:
   name: postgres-service
   namespace: messageboard-dev
+  labels:
+    app: postgres
 spec:
   type: ClusterIP
   selector:
@@ -152,3 +65,90 @@ spec:
   ports:
     - port: 5432
       targetPort: 5432
+
+
+
+# apiVersion: apps/v1
+# kind: StatefulSet
+# metadata:
+#   name: postgres
+#   namespace: messageboard-dev
+#   labels:
+#     app: postgres
+# spec:
+#   serviceName: postgres-headless  # Matches headless service name
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: postgres
+#   template:
+#     metadata:
+#       labels:
+#         app: postgres
+#     spec:
+#       containers:
+#         - name: postgres
+#           image: postgres:15
+#           ports:
+#             - containerPort: 5432
+#           env:
+#             - name: POSTGRES_DB
+#               value: messageboard
+#             - name: POSTGRES_USER
+#               valueFrom:
+#                 secretKeyRef:
+#                   name: db-secret
+#                   key: POSTGRES_USER
+#             - name: POSTGRES_PASSWORD
+#               valueFrom:
+#                 secretKeyRef:
+#                   name: db-secret
+#                   key: POSTGRES_PASSWORD
+#           volumeMounts:
+#             - name: postgres-data
+#               mountPath: /var/lib/postgresql/data
+#           resources:
+#             requests:
+#               memory: "512Mi"
+#               cpu: "250m"
+#             limits:
+#               memory: "1Gi"
+#               cpu: "500m"
+#       securityContext:
+#         fsGroup: 999  # PostgreSQL's default group
+#   volumeClaimTemplates:  # Auto-creates PVC for each replica
+#     - metadata:
+#         name: postgres-data
+#       spec:
+#         accessModes: [ "ReadWriteOnce" ]
+#         resources:
+#           requests:
+#             storage: 10Gi
+# ---
+# # Headless Service for direct pod access
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: postgres-headless
+#   namespace: messageboard-dev
+# spec:
+#   clusterIP: None  # Makes it headless
+#   selector:
+#     app: postgres
+#   ports:
+#     - port: 5432
+#       targetPort: 5432
+# ---
+# # Regular Service for application access
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: postgres-service
+#   namespace: messageboard-dev
+# spec:
+#   type: ClusterIP
+#   selector:
+#     app: postgres
+#   ports:
+#     - port: 5432
+#       targetPort: 5432
