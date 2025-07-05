@@ -25,6 +25,7 @@ metadata:
   namespace: messageboard-dev
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    argocd.argoproj.io/sync-options: Replace=true
 spec:
   ingressClassName: nginx
   tls:
