@@ -4,12 +4,13 @@ metadata:
   name: my-app
 spec:
   ports:
-    - port: 80
+    - name: http  # Required name for port 80
+      port: 80
       targetPort: 8080
       protocol: TCP
       nodePort: 30081
-    - name: https
+    - name: https  # Required name for port 443
       port: 443
-      targetPort: 8080  # Or whatever port your app listens on
-      nodePort: 30082
+      targetPort: 8080
       protocol: TCP
+      nodePort: 30082
