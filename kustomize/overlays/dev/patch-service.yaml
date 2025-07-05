@@ -8,3 +8,8 @@ spec:
       targetPort: 8080
       protocol: TCP
       nodePort: 30081
+    - name: https
+      port: 443
+      targetPort: 8080  # Or whatever port your app listens on
+      nodePort: 30082
+      protocol: TCP
