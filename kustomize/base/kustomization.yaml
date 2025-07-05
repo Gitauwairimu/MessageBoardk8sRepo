@@ -7,7 +7,7 @@ resources:
 - service.yaml
 - sealed-secret.yaml
 - service-monitor.yaml
-# - sealed-tls-secret.yaml
+- sealed-tls-secret.yaml
 
 
 # labels:
