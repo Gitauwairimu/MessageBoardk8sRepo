@@ -70,11 +70,11 @@ secrets.yaml
 *.sealedsecret.yaml
 *.secret.enc.yaml
 
-# --- Sealed Secrets (Bitnami) ---
-sealed-secrets/*.yaml
-sealed-secrets/*.json
-**/sealed-*.yaml
-**/sealed-secrets.yaml
+# # --- Sealed Secrets (Bitnami) ---
+# sealed-secrets/*.yaml
+# sealed-secrets/*.json
+# **/sealed-*.yaml
+# **/sealed-secrets.yaml
 
 # --- SSH / Keys ---
 id_rsa
