@@ -1,0 +1,103 @@
+# --- General ---
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.swn
+*.orig
+*.retry
+*.pid
+*.seed
+.DS_Store
+
+# --- IDEs and Editors ---
+.vscode/
+.idea/
+*.code-workspace
+*.iml
+
+# --- Python / Scripting ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.env.*
+
+# --- Terraform ---
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform.tfvars
+terraform.tfvars.json
+.crash/
+override.tf
+override.tf.json
+
+# --- Kubernetes ---
+kubeconfig
+kubeconfig.yaml
+.kube/
+*.kubeconfig
+*.kubeconfig.yaml
+*.kube.yaml
+
+# --- Helm ---
+charts/
+*.tgz
+*.lock
+values.yaml.backup
+release-name-values.yaml
+
+# --- Argo CD ---
+.argocd-local/
+
+# --- Secrets & Certificates ---
+certs/
+*.crt
+*.key
+*.pem
+*.p12
+*.csr
+*.enc
+*.secret.yaml
+*.secrets.yaml
+secrets.yaml
+**/secrets.yaml
+**/secret*.yaml
+*.sealed-secret.yaml
+*.sealedsecret.yaml
+*.secret.enc.yaml
+
+# --- Sealed Secrets (Bitnami) ---
+sealed-secrets/*.yaml
+sealed-secrets/*.json
+**/sealed-*.yaml
+**/sealed-secrets.yaml
+
+# --- SSH / Keys ---
+id_rsa
+id_rsa.pub
+*.key.pem
+*.pub.pem
+*.pfx
+
+# --- Output Artifacts ---
+output/
+build/
+dist/
+
+# --- Misc ---
+node_modules/
+logs/
+tmp/
+.cache/
+coverage/
+.nyc_output/
+*.gz
+*.zip
+
+# --- Git ---
+.git-credentials
+.gitconfig.local
