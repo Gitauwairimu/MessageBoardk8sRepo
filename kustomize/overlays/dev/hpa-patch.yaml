@@ -1,7 +1,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: dev-hpa1
+  name: dev-hpa
 spec:
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
