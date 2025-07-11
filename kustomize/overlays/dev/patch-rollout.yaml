@@ -20,6 +20,13 @@ spec:
 
       containers:
         - name: my-app
+          resources:
+            requests:
+              cpu: "250m"    # Must match base or be overridden
+              memory: "312Mi"
+            limits:
+              cpu: "300m"
+              memory: "424Mi"
           image: gitauwairimu/messageboard:latest 
           env:
             - name: SPRING_DATASOURCE_URL
