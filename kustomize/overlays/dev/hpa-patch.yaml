@@ -1,20 +1,18 @@
-# overlays/dev/hpa.yaml
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: dev-hpa
-  namespace: messageboard-dev  # Or omit if using default
+  name: dev-hpa1
 spec:
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
     kind: Rollout
     name: my-app
   minReplicas: 1
-  maxReplicas: 5
+  maxReplicas: 6  # Lower max for dev environment
   metrics:
   - type: Resource
     resource:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 60
+        averageUtilization: 70
