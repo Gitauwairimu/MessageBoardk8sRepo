@@ -10,7 +10,7 @@ resources:
 - postgres.yaml
 - postgres-pvc.yaml
 - ingress.yaml
-- hpa.yaml
+# - hpa.yaml
 
 # - https://github.com/prometheus-operator/kube-prometheus?ref=v0.11.0
 
