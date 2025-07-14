@@ -54,10 +54,11 @@ release-name-values.yaml
 .argocd-local/
 
 # --- Secrets & Certificates ---
-certs/
+/certkeys/
 *.crt
 *.key
 *.pem
+*.srl
 *.p12
 *.csr
 *.enc
